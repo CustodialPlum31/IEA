@@ -4,16 +4,26 @@ const path = require('path');
 const morgan = require('morgan');
 const mysql = require('mysql');
 const myConnection = require('express-myconnection');
+
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const authorize = require('./middleware/authorize');
 
 //importando rutas
+const loginRoute = require('./routes/login');
+
+//Admin
 const customerRoute = require('./routes/customer');
 const equipoRoute = require('./routes/equipo');
 const componenteRoute = require('./routes/componente');
+
+//User
 const presentacionRoute = require('./routes/presentacion');
 const solequipoRoute = require('./routes/solequipo');
 const solcomponenteRoute = require('./routes/solcomponente');
+
+
+
     
 
 //settings
@@ -48,7 +58,7 @@ app.use('/solcomponente', solcomponenteRoute);
 
 app.use('/', presentacionRoute);
 
-//app.use('/login',loginRoute);
+app.use('/login',loginRoute);
 
 
 //static files

@@ -31,6 +31,10 @@
                       value="<%= data.contrasena %>"
                       class="form-control mb-2"
                     />
+                    <select name="role" class="form-control mb-2">
+                      <option value="investigador" <%= data.role === 'investigador' ? 'selected' : '' %>>Cliente</option>
+                      <option value="admin" <%= data.role === 'admin' ? 'selected' : '' %>>Administrador</option>
+                  </select>
                     <button type="submit" class="btn btn-info">Editar usuario</button>
                   </form>
             </div>
