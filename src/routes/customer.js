@@ -3,14 +3,15 @@ const router = express.Router();
 
 const customerController = require('../controllers/customerController');
 
+//CRUD
+router.get('/',customerController.list);//READ
 
-router.get('/',customerController.list);
-router.post('/add', customerController.save);
+router.post('/add', customerController.save);//CREATE
 
-router.get('/delete/:id',customerController.delete);
+router.get('/delete/:id',customerController.delete);//DELETE
 
 router.get('/update/:id',customerController.edit);
-router.post('/update/:id',customerController.update);
+router.post('/update/:id',customerController.update);//UPDATE
 
 
 

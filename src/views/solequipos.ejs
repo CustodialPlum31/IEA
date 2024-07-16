@@ -1,0 +1,22 @@
+<%- include("partials/_header2") %>
+
+
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Equipos Disponibles</h1>
+  <form action="/solequipos" method="GET">
+      <div class="form-label">
+          <label for="equipos">Selecciona un equipo:</label>
+          <select class="form-control" name="equipos" id="equipos">
+              <% equipo.forEach(equipo => { %>
+                  <option value="<%= equipo.id_e %>"><%= equipo.nombre %></option>
+              <% }); %>
+          </select>
+      </div>
+      <button type="submit" class="btn btn-info mt-3">Pedir prestado</button>
+  </form>
+</div>
+
+
+
+<%- include("partials/_footer") %>

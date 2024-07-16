@@ -8,10 +8,8 @@
               <tr>
                 <td>N°</td>
                 <td>Nombre</td>
-                <td>Correo</td>
-                <td>Teléfono</td>
-                <td>Contraseña</td>
-                <td>Acciones</td>
+                <td>Descripcion</td>
+                <td>No.serie </td>
               </tr>
             </thead>
             <tbody>
@@ -21,12 +19,11 @@
                 <tr>
                   <td><%= (i + 1) %></td>
                   <td><%= data[i].nombre %></td>
-                  <td><%= data[i].correo %></td>
-                  <td><%= data[i].telefono %></td>
-                  <td><%= data[i].contrasena %></td>
+                  <td><%= data[i].descripcion %></td>
+                  <td><%= data[i].No_serie %></td>
                   <td>
-                    <a href="/investigador/delete/<%= data[i].id %>" class="btn btn-danger">Borrar</a>
-                    <a href="/investigador/update/<%= data[i].id %>" class="btn btn-info">Actualizar</a>
+                    <a href="/equipo/delete/<%= data[i].id_e %>" class="btn btn-danger">Borrar</a>
+                    <a href="/equipo/update/<%= data[i].id_e %>" class="btn btn-info">Actualizar</a>
                   </td>
                 </tr>
                 <% } %> <% } %>
@@ -41,7 +38,7 @@
         <div class="card">
             <div class="card-body">
 
-                <form action="/investigador/add" method="POST">
+                <form action="/equipo/add" method="POST">
                     <input
                       type="text"
                       name="nombre"
@@ -50,24 +47,18 @@
                       autofocus
                     />
                     <input
-                      type="email"
-                      name="correo"
-                      placeholder="Correo"
+                      type="text"
+                      name="descripcion"
+                      placeholder="Descripcion"
                       class="form-control mb-2"
                     />
                     <input
                       type="text"
-                      name="telefono"
-                      placeholder="Telefono"
+                      name="No_serie"
+                      placeholder="No.serie"
                       class="form-control mb-2"
                     />
-                    <input
-                      type="password"
-                      name="contrasena"
-                      placeholder="Contraseña"
-                      class="form-control mb-2"
-                    />
-                    <button type="submit" class="btn btn-info">Agregar usuario</button>
+                    <button type="submit" class="btn btn-info">Agregar equipo</button>
                   </form>
 
        </div>

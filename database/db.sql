@@ -28,13 +28,14 @@ CREATE TABLE admin(
 CREATE TABLE equipo(
     id_e  INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
-    descripcion TEXT NOT NULL
+    descripcion TEXT NOT NULL,
+    No_serie varchar(15) NOT NULL
 );
 
 CREATE TABLE componente(
     id_c  INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
-    valor VARCHAR(100) NOT NULL,
+    valor VARCHAR(10) NOT NULL,
     cantidad int(10) NOT NULL
 );
 
@@ -53,5 +54,18 @@ CREATE TABLE prestamo(
 
 DROP TABLE customer;
 SHOW TABLES;
-describe customer;
+describe componente;
+
+select * from equipo;
+
+INSERT INTO equipo (nombre, descripcion, No_serie)
+VALUES ('Osciloscopio 4MHz', 'Prueba del equipo OK', 'HAD123');
+
+-- Suma o resta de componentes
+UPDATE componente
+SET cantidad = cantidad + 1 WHERE id_c = 2;
+
+
+
+
 	

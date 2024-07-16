@@ -5,7 +5,7 @@
         <div class="col-md-5">
         <div class="card">
             <div class="card-body">
-                <form action="/investigador/update/<%= data.id %>" method="POST">
+                <form action="/componente/update/<%= data.id_c %>" method="POST">
                     <input
                       type="text"
                       name="nombre"
@@ -14,24 +14,18 @@
                       autofocus
                     />
                     <input
-                      type="email"
-                      name="correo"
-                      value="<%= data.correo %>"
-                      class="form-control mb-2"
-                    />
-                    <input
                       type="text"
-                      name="telefono"
-                      value="<%= data.telefono %>"
+                      name="valor"
+                      value="<%= data.valor %>"
                       class="form-control mb-2"
                     />
                     <input
-                      type="password"
-                      name="contrasena"
-                      value="<%= data.contrasena %>"
+                      type="number"
+                      name="cantidad"
+                      value="<%= data.cantidad %>"
                       class="form-control mb-2"
                     />
-                    <button type="submit" class="btn btn-info">Editar usuario</button>
+                    <button type="submit" class="btn btn-info">Editar componente</button>
                   </form>
             </div>
         </div>

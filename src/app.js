@@ -4,9 +4,17 @@ const path = require('path');
 const morgan = require('morgan');
 const mysql = require('mysql');
 const myConnection = require('express-myconnection');
+const session = require('express-session');
+const bodyParser = require('body-parser');
 
 //importando rutas
 const customerRoute = require('./routes/customer');
+const equipoRoute = require('./routes/equipo');
+const componenteRoute = require('./routes/componente');
+const presentacionRoute = require('./routes/presentacion');
+const solequipoRoute = require('./routes/solequipo');
+const solcomponenteRoute = require('./routes/solcomponente');
+    
 
 //settings
 app.set('port', process.env.PORT || 3000);
@@ -28,7 +36,20 @@ app.use(express.urlencoded({extended: false})); //Metodo que permite entender da
 
 //rutas
 
-app.use('/', customerRoute);
+
+app.use('/investigador', customerRoute);
+app.use('/equipo', equipoRoute);
+app.use('/componente', componenteRoute);
+app.use('/estado', componenteRoute);
+
+app.use('/solequipo', solequipoRoute);
+app.use('/solcomponente', solcomponenteRoute);
+//app.use('/prestamos', componenteRoute);
+
+app.use('/', presentacionRoute);
+
+//app.use('/login',loginRoute);
+
 
 //static files
 app.use(express.static(path.join(__dirname, 'public')));
