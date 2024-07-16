@@ -1,71 +1,80 @@
+// Importar middleware
 const express = require('express');
 const app = express();
 const path = require('path');
 const morgan = require('morgan');
 const mysql = require('mysql');
 const myConnection = require('express-myconnection');
-
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const authorize = require('./middleware/authorize');
+const authenticate = require('./middleware/authenticate'); // Importar el middleware de autenticación
 
-//importando rutas
+// Import routes
 const loginRoute = require('./routes/login');
 
-//Admin
+// Admin
 const customerRoute = require('./routes/customer');
 const equipoRoute = require('./routes/equipo');
 const componenteRoute = require('./routes/componente');
 
-//User
+// User
 const presentacionRoute = require('./routes/presentacion');
 const solequipoRoute = require('./routes/solequipo');
 const solcomponenteRoute = require('./routes/solcomponente');
 
 
+// Middlewares
 
-    
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } 
+}));
 
-//settings
+app.use(express.urlencoded({ extended: false })); // Método que permite entender datos desde un formulario
+
+app.use(bodyParser.json());
+
+app.use(morgan('dev')); // Identificar algún tipo de petición y ruta
+
+
+// Settings
 app.set('port', process.env.PORT || 3000);
-app.set('view engine','ejs');//Motor de plantillas
-app.set('views',path.join(__dirname,'views')); //Buscar carpeta views
+app.set('view engine', 'ejs'); // Motor de plantillas
+app.set('views', path.join(__dirname, 'views')); // Buscar carpeta views
 
-//middlewares
-app.use(morgan('dev'));//Identificar algun tipo de peticion y ruta
-app.use(myConnection(mysql,{
+
+app.use(myConnection(mysql, {
     host: 'localhost',
     user: 'root',
     password: 'Up1_M4N12#',
-    port:'3306',
-    database:'ieamysql'
-},'single'));
+    port: '3306',
+    database: 'ieamysql'
+}, 'single'));
 
-app.use(express.urlencoded({extended: false})); //Metodo que permite entender datos desde un formulario 
-
-
-//rutas
-
-
-app.use('/investigador', customerRoute);
-app.use('/equipo', equipoRoute);
-app.use('/componente', componenteRoute);
-app.use('/estado', componenteRoute);
-
-app.use('/solequipo', solequipoRoute);
-app.use('/solcomponente', solcomponenteRoute);
-//app.use('/prestamos', componenteRoute);
-
-app.use('/', presentacionRoute);
-
-app.use('/login',loginRoute);
-
-
-//static files
+// Static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Routes
 
-//Iniciando el servidor
-app.listen(app.get('port'),()=>{
+
+app.use('/login', loginRoute);
+
+app.use('/investigador', authenticate, authorize('admin'), customerRoute);
+app.use('/equipo', authenticate, authorize('admin'), equipoRoute);
+app.use('/componente', authenticate, authorize('admin'), componenteRoute);
+app.use('/estado', authenticate, authorize('admin'), componenteRoute);
+
+app.use('/solequipo', authenticate, authorize('investigador'), solequipoRoute);
+app.use('/solcomponente', authenticate, authorize('investigador'), solcomponenteRoute);
+//app.use('/prestamo', authenticate, authorize('investigador'), prestamoRoute);
+
+app.use('/', authenticate, authorize(['investigador', 'admin']), presentacionRoute);
+
+
+// Iniciando el servidor
+app.listen(app.get('port'), () => {
     console.log('Servidor iniciado en el puerto 3000');
-})
+});

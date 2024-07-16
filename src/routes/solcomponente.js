@@ -5,13 +5,8 @@ const solcomponenteController = require('../controllers/solcomponenteController'
 
 
 router.get('/',solcomponenteController.list);
-/*router.post('/add', componenteController.save);
+router.post('/pedir/:id_c/:cantidad', solcomponenteController.pedirPrestamo); // Ruta para solicitar préstamo usando URL
 
-router.get('/delete/:id_c',componenteController.delete);
-
-router.get('/update/:id_c',componenteController.edit);
-router.post('/update/:id_c',componenteController.update);
-*/
 
 
 

@@ -1,15 +1,16 @@
-const authorize = (roles = []) => {
+const authorize = (roles) => {
     return (req, res, next) => {
         if (typeof roles === 'string') {
             roles = [roles];
         }
 
-        if (roles.length && !roles.includes(req.user.role)) {
-            return res.status(403).json({ message: 'Forbidden' });
+        if (req.user && roles.includes(req.user.role)) {
+            next();
+        } else {
+            res.status(403).send('Forbidden');
         }
-
-        next();
     };
 };
 
 module.exports = authorize;
+

@@ -14,7 +14,6 @@ controller.list = (req, res)=> {
 };
 
 controller.save = (req,res) => {
-    console.log("PRUEBA ADD");
     const data = req.body;
     req.getConnection((err,conn) => {
         conn.query('INSERT INTO equipo set ?',[data],(err, equipo) =>{
@@ -25,7 +24,6 @@ controller.save = (req,res) => {
 
 
 controller.edit = (req,res) => {//EDIT
-    console.log("EDIT");
     const {id_e} = req.params;
     req.getConnection((err,conn) => {
         conn.query('SELECT * FROM equipo WHERE id_e = ?',[id_e], (err, equipo) => {
@@ -37,7 +35,6 @@ controller.edit = (req,res) => {//EDIT
 };
 
 controller.update = (req,res) => {//UPDATE
-    console.log("UPDATE");
     const {id_e} = req.params;
     const newCustomer = req.body;
     req.getConnection((err,conn) => {
@@ -49,7 +46,6 @@ controller.update = (req,res) => {//UPDATE
 
 
 controller.delete = (req,res) => {
-    console.log("DELETE");
   const {id_e} = req.params;
    req.getConnection((err,conn) => {
     conn.query('DELETE FROM equipo WHERE id_e = ?',[id_e],(err, rows) => {
