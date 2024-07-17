@@ -12,6 +12,7 @@ const authenticate = require('./middleware/authenticate'); // Importar el middle
 
 // Import routes
 const loginRoute = require('./routes/login');
+const logoutRoute = require('./routes/logout');
 
 // Admin
 const customerRoute = require('./routes/customer');//Investigador
@@ -20,6 +21,7 @@ const componenteRoute = require('./routes/componente');//Componentes
 const estadoRoute = require('./routes/estado')
 
 const presentacionRoute = require('./routes/presentacion');//Presentacion
+const presentacion2Route = require('./routes/presentacion2');//Presentacion
 
 
 // User
@@ -64,6 +66,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 
 app.use('/login', loginRoute);
+app.use('/logout', logoutRoute);
 
 app.use('/investigador', authenticate, authorize('admin'), customerRoute);
 app.use('/equipo', authenticate, authorize('admin'), equipoRoute);
@@ -74,7 +77,12 @@ app.use('/solequipo', authenticate, authorize('investigador'), solequipoRoute);
 app.use('/solcomponente', authenticate, authorize('investigador'), solcomponenteRoute);
 app.use('/prestamo', authenticate, authorize('investigador'), prestamoRoute);
 
-app.use('/', authenticate, authorize(['investigador', 'admin']), presentacionRoute);
+app.use('/2', authenticate, authorize(['investigador']), presentacion2Route);
+app.use('/', authenticate, authorize( ['admin']), presentacionRoute);
+
+
+
+
 
 
 // Iniciando el servidor

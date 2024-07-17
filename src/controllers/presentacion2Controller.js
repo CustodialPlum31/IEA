@@ -9,7 +9,7 @@ controller.show = (req, res) => {
             if (err || customer.length === 0) {
                 return res.status(500).send('Error fetching user data');
             }
-            res.render('presentacion', {
+            res.render('presentacion2', {
                 user: {
                     name: customer[0].nombre
                 }

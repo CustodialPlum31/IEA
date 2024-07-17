@@ -14,14 +14,16 @@ router.post('/', (req, res) => {
 
         conn.query('SELECT * FROM customer WHERE correo = ?', [email], (err, results) => {
             if (err || results.length === 0) {
-                return res.status(401).json({ error: 'Authentication failed' });
+                return res.status(401).send('Correo electrónico o contraseña incorrectos. Intenta de nuevo =)');
+    
             }
 
             const user = results[0];
 
-            // Comparación de contraseñas en texto plano
+            // Comparación de contraseñas
             if (user.contrasena !== password) {
-                return res.status(401).json({ error: 'Authentication failed' });
+                return res.status(401).send('Correo electrónico o contraseña incorrectos. Intenta de nuevo =)');
+    
             }
 
             req.session.user = {
@@ -29,14 +31,14 @@ router.post('/', (req, res) => {
                 role: user.role
             };
 
-            console.log('User authenticated, session established');
+            //console.log('Usuario autenticado');
 
 
-            // Redirigir según el rol del usuario
+            //Ruta segun el rol
             if (user.role === 'admin') {
                 res.redirect('/'); // Ruta para administradores
             } else if (user.role === 'investigador') {
-                res.redirect('/solequipo'); // Ruta para investigadores
+                res.redirect('/2'); // Ruta para investigadores
             } else {
                 res.status(403).send('Forbidden'); // Manejo para otros roles
             }

@@ -1,11 +1,11 @@
 <%- include("partials/_header2") %>
 
-<div class="container mt-5">
-  <h1 class="text-center mb-4">Equipos Disponibles</h1>
+<div class="container mt-5 text-center">
+  <h1 class="mb-4">Equipos Disponibles</h1>
   <% if (equipos.length > 0) { %>
-    <form action="/solequipo/solicitar" method="GET">
+    <form action="/solequipo/solicitar" method="GET" class="d-inline-block">
       <div class="form-label">
-        <label for="equipo_id">Selecciona un equipo:</label>
+        <label for="equipo_id"> <strong>  Selecciona un equipo:  </strong></label>
         <select class="form-control" name="equipo_id" id="equipo_id">
           <% equipos.forEach(equipo => { %>
             <option value="<%= equipo.id_e %>"><%= equipo.nombre %></option>

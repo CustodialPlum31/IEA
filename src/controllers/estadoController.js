@@ -23,4 +23,14 @@ controller.list = (req, res) => {
     });
 };
 
+
+controller.delete = (req,res) => {
+    const {id_p} = req.params;
+     req.getConnection((err,conn) => {
+      conn.query('DELETE FROM prestamo WHERE id_p = ?',[id_p],(err, rows) => {
+          res.redirect('/estado')
+      })
+     })
+  };
+
 module.exports = controller;

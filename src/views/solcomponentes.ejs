@@ -1,11 +1,11 @@
 <%- include("partials/_header2") %>
 
-<div class="container mt-5">
-  <h1 class="text-center mb-4">Pedir Préstamo</h1>
-  <form action="/solcomponente/pedir/:id_c/:cantidad" method="POST">
+<div class="container mt-5 text-center">
+  <h1 class="mb-4">Pedir Préstamo</h1>
+  <form action="/solcomponente/pedir/:id_c/:cantidad" method="POST" class="d-inline-block">
       <div class="form-row">
-          <div class="form-group col-md-6">
-              <label for="componentes">Componente</label>
+          <div class="form-group col-md-15">
+              <label for="componentes"> <strong>Componente </strong></label>
               <select class="form-control" name="componentes" id="componentes">
                   <% componentes.forEach(componente => { %>
                       <option value="<%= componente.id_c %>" data-cantidad="<%= componente.cantidad %>" data-valor="<%= componente.valor %>">
@@ -14,13 +14,13 @@
                   <% }); %>
               </select>
           </div>
-          <div class="form-group col-md-6">
-              <label for="num_componentes">Componentes disponibles</label>
+          <div class="form-group col-md-10">
+              <label for="num_componentes"> <strong> Cantidad disponible</strong> </label>
               <input type="text" class="form-control" id="num_componentes" name="num_componentes" readonly>
           </div>
       </div>
       <div class="form-group">
-          <label for="cantidad">Cantidad que deseas tomar</label>
+          <label for="cantidad"> <strong>Cantidad que deseas tomar</strong> </label>
           <input type="number" class="form-control" id="cantidad" name="cantidad">
       </div>
       <button type="submit" class="btn btn-info mt-3">Pedir préstamo</button>

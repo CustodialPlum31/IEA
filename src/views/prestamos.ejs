@@ -1,16 +1,22 @@
 <%- include("partials/_header2") %>
 
 <div class="container mt-5">
-  <h1 class="text-center mb-4">Préstamos Solicitados</h1>
-  <% if (prestamos.length > 0) { %>
-    <ul class="list-group">
-      <% prestamos.forEach(prestamo => { %>
-        <li class="list-group-item"><%= prestamo.nombre %></li>
-      <% }); %>
-    </ul>
-  <% } else { %>
-    <p>No tienes préstamos solicitados actualmente.</p>
-  <% } %>
+  <div class="row justify-content-center">
+    <div class="col-md-4 text-center">
+      <div class="text-center">
+        <h3 class="mb-4" style="color: #000000;">Préstamos Solicitados</h3>
+      </div>
+      <% if (prestamos.length > 0) { %>
+        <ul class="list-group">
+          <% prestamos.forEach(prestamo => { %>
+            <li class="list-group-item" style="background-color: #a68fc8; color: #000000;"><%= prestamo.nombre %></li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p class="text-center mt-3">No tienes préstamos solicitados actualmente.</p>
+      <% } %>
+    </div>
+  </div>
 </div>
 
 <%- include("partials/_footer") %>
