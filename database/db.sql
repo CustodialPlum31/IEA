@@ -1,23 +1,22 @@
 
+DROP DATABASE ieamysql;
+
 CREATE DATABASE ieamysql;
 
 USE ieamysql;
-
-CREATE TABLE investigador(
-    id  INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
-    correo VARCHAR(100) NOT NULL,
-    telefono VARCHAR(10) NOT NULL,
-    contrasena varchar(20) NOT NULL
-);
 
 CREATE TABLE customer(
     id  INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     correo VARCHAR(100) NOT NULL,
     telefono VARCHAR(10) NOT NULL,
-    contrasena varchar(20) NOT NULL
+    contrasena varchar(20) NOT NULL,
+    role ENUM('admin', 'investigador') NOT NULL
 );
+
+
+INSERT INTO customer (id, nombre, correo, telefono, contrasena, role)
+VALUES (1,'Manuel Andres Ceja de Luna', 'manuelandres82@outlook.com', 'Up1_M4N12#','admin');
 
 CREATE TABLE admin(
     id_a  INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -43,8 +42,8 @@ CREATE TABLE prestamo(
     id_p  INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     investigador_id INT(6) UNSIGNED,
 	equipos_id INT(6) UNSIGNED,
-	FOREIGN KEY (investigador_id) REFERENCES investigadores(id_i),
-	FOREIGN KEY (equipos_id) REFERENCES equipos(id_e)
+	FOREIGN KEY (investigador_id) REFERENCES customer(id),
+	FOREIGN KEY (equipos_id) REFERENCES equipo(id_e)
 );
 
 
@@ -52,11 +51,11 @@ CREATE TABLE prestamo(
 
 
 
-DROP TABLE customer;
+DROP TABLE prestamo;
 SHOW TABLES;
 describe componente;
 
-select * from equipo;
+select * from prestamo;
 
 INSERT INTO equipo (nombre, descripcion, No_serie)
 VALUES ('Osciloscopio 4MHz', 'Prueba del equipo OK', 'HAD123');
