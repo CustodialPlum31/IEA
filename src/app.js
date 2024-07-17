@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const authorize = require('./middleware/authorize');
 const authenticate = require('./middleware/authenticate'); // Importar el middleware de autenticación
 
-const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, PORT } = require('./config');
+const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, PORT } = require('./config.js');
 
 
 
