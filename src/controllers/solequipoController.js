@@ -3,13 +3,13 @@ const controller = {};
 controller.list = (req, res) => {
     req.getConnection((err, conn) => {
         if (err) {
-            console.error('Error connecting to the database:', err);
-            return res.status(500).json({ error: 'Internal server error' });
+            console.error('Error con la BD:', err);
+            return res.status(500).json({ error: 'Error con la BD' });
         }
 
         conn.query('SELECT * FROM equipo', (err, equipos) => {
             if (err) {
-                console.error('Error querying the database:', err);
+                console.error('Error en la consulat:', err);
                 return res.json(err);
             }
             res.render('solequipos', {
@@ -36,14 +36,13 @@ controller.solicitarPrestamo = (req, res) => {
 
     req.getConnection((err, conn) => {
         if (err) {
-            console.error('Error connecting to the database:', err);
-            return res.status(500).json({ error: 'Internal server error' });
+            return res.status(500).json({ error: 'Error  conectando con la BD' });
         }
 
         // Insertar préstamo en la tabla prestamo
         conn.query('INSERT INTO prestamo (investigador_id, equipos_id) VALUES (?, ?)', [investigadorId, equipoId], (err, result) => {
             if (err) {
-                console.error('Error inserting into the database:', err);
+                //console.error('No se ingreso a la BD:', err);
                 return res.status(500).json({ error: 'Error al solicitar préstamo' });
             }
             res.redirect('/solequipo'); // Redirigir a la página de equipos disponibles

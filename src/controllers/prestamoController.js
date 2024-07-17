@@ -5,7 +5,7 @@ controller.list = (req, res) => {
 
     req.getConnection((err, conn) => {
         if (err) {
-            return res.status(500).json({ error: 'Error interno del servidor' });
+            return res.status(500).json({ error: 'Error ' });
         }
 
         // Consultar los equipos prestados por el investigador

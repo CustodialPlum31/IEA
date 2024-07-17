@@ -1,22 +1,4 @@
-/*const authorize = (roles) => {
-    return (req, res, next) => {
-        if (typeof roles === 'string') {
-            roles = [roles];
-        }
 
-        if (req.user && roles.includes(req.user.role)) {
-            console.log(req.user.role);
-            next();
-        } else {
-            console.log(req.user.role);
-            res.status(403).send('Forbidden');
-        }
-    };
-};
-
-module.exports = authorize;
-
-*/
 const authorize = (roles) => {
     return (req, res, next) => {
         if (typeof roles === 'string') {
@@ -24,11 +6,11 @@ const authorize = (roles) => {
         }
 
         if (req.user && roles.includes(req.user.role)) {
-            console.log('Role authorized:', req.user.role);
+            //console.log('Role permitido:', req.user.role);
             next();
         } else {
-            console.log('Role forbidden:', req.user.role);
-            res.status(403).send('Forbidden');
+            console.log('Role prohibido:', req.user.role);
+            res.status(403).send('No tienes rango suficiente');
         }
     };
 };

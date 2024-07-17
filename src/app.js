@@ -10,6 +10,11 @@ const bodyParser = require('body-parser');
 const authorize = require('./middleware/authorize');
 const authenticate = require('./middleware/authenticate'); // Importar el middleware de autenticación
 
+const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, PORT } = require('./config');
+
+
+
+
 // Import routes
 const loginRoute = require('./routes/login');
 const logoutRoute = require('./routes/logout');
@@ -47,18 +52,21 @@ app.use(morgan('dev')); // Identificar algún tipo de petición y ruta
 
 
 // Settings
-app.set('port', process.env.PORT || 3000);
+app.set('PORT', process.env.PORT || 3000);
 app.set('view engine', 'ejs'); // Motor de plantillas
 app.set('views', path.join(__dirname, 'views')); // Buscar carpeta views
 
 
+
 app.use(myConnection(mysql, {
-    host: 'localhost',
-    user: 'root',
-    password: 'Up1_M4N12#',
-    port: '3306',
-    database: 'ieamysql'
+    host: DB_HOST,
+    user: DB_USER,
+    password: DB_PASSWORD,
+    port: DB_PORT,
+    database: DB_NAME
 }, 'single'));
+
+
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -84,8 +92,6 @@ app.use('/', authenticate, authorize( ['admin']), presentacionRoute);
 
 
 
-
-// Iniciando el servidor
-app.listen(app.get('port'), () => {
-    console.log('Servidor iniciado en el puerto 3000');
+app.listen(app.get('PORT'), () => {
+    console.log(`Servidor iniciado en el puerto ${app.get('PORT')}`);
 });

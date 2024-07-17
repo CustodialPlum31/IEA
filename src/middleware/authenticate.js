@@ -1,12 +1,12 @@
 const authenticate = (req, res, next) => {
-    console.log('Authenticating user...');
+    console.log('Autenticando usuario');
     if (!req.session.user) {
-        console.log('No user in session, redirecting to login');
+        console.log('No accedio usuario');
         return res.redirect('/login');
     }
 
     req.user = req.session.user;
-    console.log('User authenticated:',req.user);
+    console.log('Usuario autenticado:',req.user);
     console.log(req.session.user);
     next();
 };
