@@ -14,10 +14,6 @@ CREATE TABLE customer(
     role ENUM('admin', 'investigador') NOT NULL
 );
 
-
-INSERT INTO customer (id, nombre, correo, telefono, contrasena, role)
-VALUES (1,'Manuel Andres Ceja de Luna', 'manuelandres82@outlook.com', 'Up1_M4N12#','admin');
-
 CREATE TABLE admin(
     id_a  INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     correo VARCHAR(100) NOT NULL,

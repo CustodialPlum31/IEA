@@ -4,7 +4,7 @@ const DB_HOST =  'localhost';
 const DB_USER =  'root';
 const DB_PASSWORD = 'Up1_M4N12#';
 const DB_NAME =  'ieamysql';
-const DB_PORT =  3306;
+const DB_PORT =  36782;
 
 module.exports = {
     PORT,
