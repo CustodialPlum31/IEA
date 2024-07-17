@@ -14,14 +14,18 @@ const authenticate = require('./middleware/authenticate'); // Importar el middle
 const loginRoute = require('./routes/login');
 
 // Admin
-const customerRoute = require('./routes/customer');
-const equipoRoute = require('./routes/equipo');
-const componenteRoute = require('./routes/componente');
+const customerRoute = require('./routes/customer');//Investigador
+const equipoRoute = require('./routes/equipo');//Equipos
+const componenteRoute = require('./routes/componente');//Componentes
+const estadoRoute = require('./routes/estado')
+
+const presentacionRoute = require('./routes/presentacion');//Presentacion
+
 
 // User
-const presentacionRoute = require('./routes/presentacion');
-const solequipoRoute = require('./routes/solequipo');
-const solcomponenteRoute = require('./routes/solcomponente');
+const solequipoRoute = require('./routes/solequipo');//Solicitar equipos
+const solcomponenteRoute = require('./routes/solcomponente');//Solicitar componentes
+const prestamoRoute = require('./routes/prestamo');//Ver mis prestamos
 
 
 // Middlewares
@@ -59,17 +63,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 
-
 app.use('/login', loginRoute);
 
 app.use('/investigador', authenticate, authorize('admin'), customerRoute);
 app.use('/equipo', authenticate, authorize('admin'), equipoRoute);
 app.use('/componente', authenticate, authorize('admin'), componenteRoute);
-app.use('/estado', authenticate, authorize('admin'), componenteRoute);
+app.use('/estado', authenticate, authorize('admin'), estadoRoute);
 
 app.use('/solequipo', authenticate, authorize('investigador'), solequipoRoute);
 app.use('/solcomponente', authenticate, authorize('investigador'), solcomponenteRoute);
-//app.use('/prestamo', authenticate, authorize('investigador'), prestamoRoute);
+app.use('/prestamo', authenticate, authorize('investigador'), prestamoRoute);
 
 app.use('/', authenticate, authorize(['investigador', 'admin']), presentacionRoute);
 

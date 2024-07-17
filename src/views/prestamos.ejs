@@ -1,0 +1,16 @@
+<%- include("partials/_header2") %>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Préstamos Solicitados</h1>
+  <% if (prestamos.length > 0) { %>
+    <ul class="list-group">
+      <% prestamos.forEach(prestamo => { %>
+        <li class="list-group-item"><%= prestamo.nombre %></li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>No tienes préstamos solicitados actualmente.</p>
+  <% } %>
+</div>
+
+<%- include("partials/_footer") %>

@@ -1,0 +1,27 @@
+<%- include("partials/_header") %>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Préstamos Activos</h1>
+  <% if (prestamos.length > 0) { %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Investigador</th>
+          <th scope="col">Equipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% prestamos.forEach(prestamo => { %>
+          <tr>
+            <td><%= prestamo.investigador_nombre %></td>
+            <td><%= prestamo.equipo_nombre %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No hay préstamos activos.</p>
+  <% } %>
+</div>
+
+<%- include("partials/_footer") %>
