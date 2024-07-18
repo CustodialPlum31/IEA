@@ -45,7 +45,7 @@ controller.solicitarPrestamo = (req, res) => {
                 //console.error('No se ingreso a la BD:', err);
                 return res.status(500).json({ error: 'Error al solicitar préstamo' });
             }
-            res.redirect('/solequipo'); // Redirigir a la página de equipos disponibles
+            res.redirect('/prestamo'); // Redirigir a la página de equipos disponibles
         });
     });
 };
