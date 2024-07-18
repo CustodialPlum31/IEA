@@ -10,7 +10,11 @@ const bodyParser = require('body-parser');
 const authorize = require('./middleware/authorize');
 const authenticate = require('./middleware/authenticate'); // Importar el middleware de autenticación
 
-const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, PORT } = require('./config.js');
+require('dotenv').config();
+
+
+//const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, PORT } = require('./config.js');
+const { DB_HOST, DB_USER, DB_PASSWORD, DB_PORT, DB_NAME } = process.env;
 
 
 
@@ -55,6 +59,9 @@ app.use(morgan('dev')); // Identificar algún tipo de petición y ruta
 app.set('PORT', process.env.PORT || 3000);
 app.set('view engine', 'ejs'); // Motor de plantillas
 app.set('views', path.join(__dirname, 'views')); // Buscar carpeta views
+
+console.log('ENV Variables Loaded:');
+console.log(process.env);
 
 
 console.log(DB_HOST);
