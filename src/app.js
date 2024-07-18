@@ -63,7 +63,8 @@ app.use(myConnection(mysql, {
     user: DB_USER,
     password: DB_PASSWORD,
     port: DB_PORT,
-    database: DB_NAME
+    database: DB_NAME,
+    connectTimeout: 10000 // Aumenta el tiempo de espera a 10 segundos
 }, 'single'));
 
 
