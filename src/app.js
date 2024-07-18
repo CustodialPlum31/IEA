@@ -57,6 +57,11 @@ app.set('view engine', 'ejs'); // Motor de plantillas
 app.set('views', path.join(__dirname, 'views')); // Buscar carpeta views
 
 
+console.log(DB_HOST);
+console.log(DB_USER);
+console.log(DB_PASSWORD);
+console.log(DB_PORT);
+console.log(DB_NAME);
 
 app.use(myConnection(mysql, {
     host: DB_HOST,
