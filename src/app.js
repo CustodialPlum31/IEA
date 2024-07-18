@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const morgan = require('morgan');
-const mysql = require('mysql');
+const mysql = require('mysql12');
 const myConnection = require('express-myconnection');
 const session = require('express-session');
 const bodyParser = require('body-parser');
@@ -76,6 +76,7 @@ app.use(myConnection(mysql, {
     password: DB_PASSWORD,
     port: DB_PORT,
     database: DB_NAME,
+    insecureAuth: true
 }, 'single'));
 
 
