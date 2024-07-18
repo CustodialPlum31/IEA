@@ -59,12 +59,11 @@ app.set('views', path.join(__dirname, 'views')); // Buscar carpeta views
 
 
 app.use(myConnection(mysql, {
-    host: 'monorail.proxy.rlwy.net',  // Reemplaza con tu host
-    user: 'root',                     // Reemplaza con tu usuario
-    password: 'ntzEUAkOPWMGcvBrRHrHZektmcWfAgEB',  // Reemplaza con tu contraseña
-    database: 'railway',              // Reemplaza con tu nombre de base de datos
-    port: 36782,                      // Reemplaza con tu puerto
-    connectTimeout: 10000             // Tiempo de espera de 10 segundos
+    host: DB_HOST,
+    user: DB_USER,
+    password: DB_PASSWORD,
+    port: DB_PORT,
+    database: DB_NAME,
 }, 'single'));
 
 
